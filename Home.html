@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>防黃牛售票網</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -13,11 +13,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 
 <!-- Navigation Bar -->
 <div class="w3-bar w3-white w3-large">
-  <a href="#" class="w3-bar-item w3-button w3-red w3-mobile"><i class="fa fa-bed w3-margin-right"></i>Logo</a>
-  <a href="#rooms" class="w3-bar-item w3-button w3-mobile">Rooms</a>
-  <a href="#about" class="w3-bar-item w3-button w3-mobile">About</a>
-  <a href="#contact" class="w3-bar-item w3-button w3-mobile">Contact</a>
-  <a href="#contact" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Book Now</a>
+  <a href="#" class="w3-bar-item w3-button w3-red w3-mobile"><i class="fa fa-home w3-margin-right"></i>首頁</a>
+  <a href="#rooms" class="w3-bar-item w3-button w3-mobile">活動總覽</a>
+  <a href="#about" class="w3-bar-item w3-button w3-mobile">關於我們</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-mobile">聯絡資訊</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">立即購票</a>
 </div>
 <!-- Header -->
 
@@ -26,87 +26,93 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 <div class="w3-content" style="max-width:1532px;">
 
   <div class="w3-container w3-margin-top" id="rooms">
-    <h3>Rooms</h3>
-    <p>Make yourself at home is our slogan. We offer the best beds in the industry. Sleep well and rest well.</p>
+    <h2>Welcome !</h2>
+    <p><h5>這裡是一個沒有黃牛的售票網站。Here is a ticketing website without scalpers.</h5></p>
   </div>
   
   <div class="w3-row-padding">
     <div class="w3-col m3">
-      <label><i class="fa fa-calendar-o"></i> Check In</label>
+      <label><i class="fa fa-calendar-o"></i> 活動日期 (起始)</label>
       <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY">
     </div>
     <div class="w3-col m3">
-      <label><i class="fa fa-calendar-o"></i> Check Out</label>
+      <label><i class="fa fa-calendar-o"></i> 活動日期 (結束)</label>
       <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY">
     </div>
     <div class="w3-col m2">
-      <label><i class="fa fa-male"></i> Adults</label>
+      <label><i class="fa fa-map-marker"></i> 活動地區</label>
+      <input class="w3-input w3-border" type="text" placeholder="不限">
+    </div>
+    <div class="w3-col m2">
+      <label><i class="fa fa-male"></i> 人數</label>
       <input class="w3-input w3-border" type="number" placeholder="1">
     </div>
     <div class="w3-col m2">
-      <label><i class="fa fa-child"></i> Kids</label>
-      <input class="w3-input w3-border" type="number" placeholder="0">
-    </div>
-    <div class="w3-col m2">
-      <label><i class="fa fa-search"></i> Search</label>
+      <label><i class="fa fa-search"></i> 搜尋</label>
       <button class="w3-button w3-block w3-black">Search</button>
     </div>
   </div>
 
+  <div class="w3-container w3-margin-top" id="rooms">
+    <h3>熱門活動</h3>
+  </div>
+
   <div class="w3-row-padding w3-padding-16">
     <div class="w3-third w3-margin-bottom">
-      <img src="/w3images/room_single.jpg" alt="Norway" style="width:100%">
+      <img src="https://imgs.utiki.com.tw/Data/UTIKI_UDN//Images/UTK2401/N186Z742_Product.JPG" alt="Norway" style="width:100%">
       <div class="w3-container w3-white">
-        <h3>Single Room</h3>
-        <h6 class="w3-opacity">From $99</h6>
-        <p>Single bed</p>
-        <p>15m<sup>2</sup></p>
-        <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i></p>
-        <button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>
+        <h3>會動的文藝復興</h3>
+        <h6 class="w3-opacity"> $390 起</h6>
+        <p>臺北花博流行館</p>
+        <p>2021/06/25 ~ 2021/09/21</p>
+        <!--<p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i></p>-->
+        <button class="w3-button w3-block w3-black w3-margin-bottom">立即購票</button>
       </div>
     </div>
     <div class="w3-third w3-margin-bottom">
-      <img src="/w3images/room_double.jpg" alt="Norway" style="width:100%">
+      <img src="https://imgs.utiki.com.tw/Data/UTIKI_UDN//Images/ADImages/N17BQFJE/202104191112538849BT70S_udn%E5%94%AE%E7%A5%A8%E7%B6%B2_740X420.jpg" alt="Norway" style="width:100%">
       <div class="w3-container w3-white">
-        <h3>Double Room</h3>
-        <h6 class="w3-opacity">From $149</h6>
-        <p>Queen-size bed</p>
-        <p>25m<sup>2</sup></p>
-        <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i> <i class="fa fa-tv"></i></p>
-        <button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>
+        <h3>BACK TO 70’S 西洋金曲演唱會</h3>
+        <h6 class="w3-opacity"> $699 起</h6>
+        <p>台中中興大學 惠蓀堂</p>
+        <p>2021/05/29 ~ 2021/07/17</p>
+        <!--<p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i> <i class="fa fa-tv"></i></p>-->
+        <button class="w3-button w3-block w3-black w3-margin-bottom">立即購票</button>
       </div>
     </div>
     <div class="w3-third w3-margin-bottom">
-      <img src="/w3images/room_deluxe.jpg" alt="Norway" style="width:100%">
+      <img src="https://imgs.utiki.com.tw/Data/UTIKI_UDN//Images/UTK2401/N15D804V_Product.JPG" alt="Norway" style="width:100%">
       <div class="w3-container w3-white">
-        <h3>Deluxe Room</h3>
-        <h6 class="w3-opacity">From $199</h6>
-        <p>King-size bed</p>
-        <p>40m<sup>2</sup></p>
-        <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i> <i class="fa fa-tv"></i> <i class="fa fa-glass"></i> <i class="fa fa-cutlery"></i></p>
-        <button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>
+        <h3>粽邪怨靈鬼屋-生人勿近</h3>
+        <h6 class="w3-opacity"> $300 起</h6>
+        <p>華山1914文化創意產業園區 西4、5館</p>
+        <p>2021/04/26 ~ 2021/06/25</p>
+        <!--<p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i> <i class="fa fa-tv"></i> <i class="fa fa-glass"></i> <i class="fa fa-cutlery"></i></p>-->
+        <button class="w3-button w3-block w3-black w3-margin-bottom">立即購票</button>
       </div>
     </div>
   </div>
 
   <div class="w3-row-padding" id="about">
     <div class="w3-col l4 12">
-      <h3>About</h3>
-      <h6>Our hotel is one of a kind. It is truely amazing. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</h6>
-    <p>We accept: <i class="fa fa-credit-card w3-large"></i> <i class="fa fa-cc-mastercard w3-large"></i> <i class="fa fa-cc-amex w3-large"></i> <i class="fa fa-cc-cc-visa w3-large"></i><i class="fa fa-cc-paypal w3-large"></i></p>
+      <h2>我們的初衷</h2>
+      <h4>隨著網路售票的盛行，市場上出現一群名為黃牛的投機份子，利用大量掃票後高價賣出的低風險手段營利，不僅讓買不到票的粉絲不得不購買黃牛票，也將間接導致業者的利益受損。
+          <br/>在台灣，活動票券的實名制系統指的多為入場前驗票時的身分驗證，尚未有在交易時即進行網路實名驗證的售票平台。因此我們希望可以創造一個能有效杜絕黃牛亂象的購票平台！</h4>
+          <hr/>
+    <p><h4>我們提供這些付款方式 : <i class="fa fa-credit-card w3-large"></i> <i class="fa fa-cc-mastercard w3-large"></i> <i class="fa fa-cc-amex w3-large"></i> <i class="fa fa-cc-cc-visa w3-large"></i><i class="fa fa-cc-paypal w3-large"></i></h4></p>
     </div>
     <div class="w3-col l8 12">
       <!-- Image of location/map -->
-      <img src="/w3images/map.jpg" class="w3-image w3-greyscale" style="width:100%;">
+      <img src="https://cdn.pixabay.com/photo/2016/11/29/06/17/audience-1867754_1280.jpg" class="w3-image w3-greyscale" style="width:95%;" align ="right">
     </div>
   </div>
   
-  <div class="w3-row-padding w3-large w3-center" style="margin:32px 0">
-    <div class="w3-third"><i class="fa fa-map-marker w3-text-red"></i> 423 Some adr, Chicago, US</div>
-    <div class="w3-third"><i class="fa fa-phone w3-text-red"></i> Phone: +00 151515</div>
-    <div class="w3-third"><i class="fa fa-envelope w3-text-red"></i> Email: mail@mail.com</div>
+  <div class="w3-row-padding w3-large w3-center" style="margin:32px 0" >
+    <div class="w3-third"><i class="fa fa-map-marker w3-text-black"></i> 616A room, ChiaYi, Taiwan</div>
+    <div class="w3-third"><i class="fa fa-phone w3-text-black"></i> Phone: +00 151515</div>
+    <div class="w3-third"><i class="fa fa-envelope w3-text-black"></i> Email: finTech@mail.com</div>
   </div>
-
+<!--
   <div class="w3-panel w3-red w3-leftbar w3-padding-32">
     <h6><i class="fa fa-info w3-deep-orange w3-padding w3-margin-right"></i> On demand, we can offer playstation, babycall, children care, dog equipment, etc.</h6>
   </div>
@@ -154,26 +160,26 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       </div>
     </div>
   </div>
-
+-->
   <div class="w3-container w3-padding-32 w3-black w3-opacity w3-card w3-hover-opacity-off" style="margin:32px 0;">
-    <h2>Get the best offers first!</h2>
-    <p>Join our newsletter.</p>
+    <h2>喜歡我們嗎？</h2>
+    <p><h5>現在就訂閱我們，隨時掌握最新活動資訊！</h5></p>
     <label>E-mail</label>
-    <input class="w3-input w3-border" type="text" placeholder="Your Email address">
-    <button type="button" class="w3-button w3-red w3-margin-top">Subscribe</button>
+    <input class="w3-input w3-border" type="text" placeholder="輸入您的Email">
+    <button type="button" class="w3-button w3-red w3-margin-top">立即訂閱</button>
   </div>
 
   <div class="w3-container" id="contact">
-    <h2>Contact</h2>
-    <p>If you have any questions, do not hesitate to ask them.</p>
-    <i class="fa fa-map-marker w3-text-red" style="width:30px"></i> Chicago, US<br>
-    <i class="fa fa-phone w3-text-red" style="width:30px"></i> Phone: +00 151515<br>
-    <i class="fa fa-envelope w3-text-red" style="width:30px"> </i> Email: mail@mail.com<br>
+    <h2>聯絡我們</h2>
+    <p>還有什麼想知道的嗎？我們歡迎你的詢問！</p>
+    <i class="fa fa-map-marker w3-text-black" style="width:30px"></i> ChiaYi, Taiwan<br>
+    <i class="fa fa-phone w3-text-black" style="width:30px"></i> Phone: +00 151515<br>
+    <i class="fa fa-envelope w3-text-black" style="width:30px"> </i> Email: finTech@mail.com<br>
     <form action="/action_page.php" target="_blank">
-      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Name"></p>
+      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="姓名" required name="Name"></p>
       <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Email" required name="Email"></p>
-      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message" required name="Message"></p>
-      <p><button class="w3-button w3-black w3-padding-large" type="submit">SEND MESSAGE</button></p>
+      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="訊息內容" required name="Message"></p>
+      <p><button class="w3-button w3-black w3-padding-large" type="submit">送出訊息</button></p>
     </form>
   </div>
 
@@ -212,6 +218,7 @@ function myMap() {
 }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
+
 <!--
 To use this code on your website, get a free API key from Google.
 Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
