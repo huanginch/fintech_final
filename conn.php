@@ -15,8 +15,8 @@ $database = $factory->createDatabase();
 
 
 //for test
-
-$database->getReference('config/website')
+/*
+$database->getReference('onfig/website')
    ->set([
        'name' => 'My Application',
        'emails' => [
@@ -25,8 +25,8 @@ $database->getReference('config/website')
        ],
        'website' => 'https://app.domain.tld',
       ]);
-
-$database->getReference('config/website/name')->set('New name');
+*/
+$database->getReference('a')->set('New name2');
 
 
 //done test
