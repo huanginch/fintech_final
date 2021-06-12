@@ -65,10 +65,20 @@ def logout():
 def ticket():
     return render_template('ticket.html')
 
-@app.route('/ticket_info', methods=["GET","POST"])
+@app.route('/ticket_info_1', methods=["GET","POST"])
 @jwt_required()
-def ticket_info():
-    return render_template('ticket_info.html')
+def ticket_info_1():
+    return render_template('ticket_info_1.html')
+
+@app.route('/ticket_info_2', methods=["GET","POST"])
+@jwt_required()
+def ticket_info_2():
+    return render_template('ticket_info_2.html')
+
+@app.route('/ticket_info_3', methods=["GET","POST"])
+@jwt_required()
+def ticket_info_3():
+    return render_template('ticket_info_3.html')
 
 # 以下註解部分為google官方提供的code
 # @app.route('/add', methods=['POST'])
