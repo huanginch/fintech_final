@@ -1,3 +1,5 @@
+import flask.scaffold
+flask.helpers._endpoint_from_view_func = flask.scaffold._endpoint_from_view_func
 from flask_restful import Resource, reqparse
 from firebase_admin import credentials, firestore, initialize_app
 import traceback

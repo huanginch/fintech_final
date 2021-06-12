@@ -26,12 +26,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 
 <!-- Page content -->
 <div class = "w3-center w3-content" style="background-color: white; max-width: 500px;">
-<form method="POST">
+<form action="/login" id=login-form>
   <br>
-  <i class="fa fa-envelope"> 帳號 ： </i><input class='w3-text-black' type="text" name="username"><br><br>
-  <i class="fa fa-key"></i> 密碼 ： <input class='w3-text-black' type="text" name="password"><br><br>
-  <button class="w3-button w3-block w3-black" type="submit">登入</button>
-
+  <i class="fa fa-envelope"> 帳號 ： </i><input class='w3-text-black' type="text" name="username" id="username"><br><br>
+  <i class="fa fa-key"></i> 密碼 ： <input class='w3-text-black' type="text" name="password" id="username"><br><br>
+  <button class="w3-button w3-block w3-black" value='submit'>登入</button>
 </form>
 </div>
       
@@ -57,8 +56,55 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 </body>
 
 <script>
-function login(){
+ async function postFormDataAsJson({ url, formData }) {
+	const plainFormData = Object.fromEntries(formData.entries());
+	const formDataJsonString = JSON.stringify(plainFormData);
 
+	const fetchOptions = {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json",
+		},
+		body: formDataJsonString,
+	};
+
+	const response = await fetch(url, fetchOptions);
+
+	if (!response.ok) {
+		const errorMessage = await response.text();
+		throw new Error(errorMessage);
+	}
+
+	return response.json();
 }
+
+/**
+ * Event handler for a form submit event.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event
+ *
+ * @param {SubmitEvent} event
+ */
+async function handleFormSubmit(event) {
+	event.preventDefault();
+
+	const form = event.currentTarget;
+	const url = form.action;
+
+	try {
+		const formData = new FormData(form);
+		const responseData = await postFormDataAsJson({ url, formData });
+
+		alert("login success");
+    window.location.href='/ticket_info'
+	} catch (error) {
+		console.error(error);
+	}
+}
+
+const loginForm = document.getElementById("login-form");
+loginForm.addEventListener("submit", handleFormSubmit);
+
 </script>
 </html>

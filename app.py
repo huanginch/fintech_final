@@ -1,6 +1,8 @@
 # app.py
 
 # Required imports
+import flask.scaffold
+flask.helpers._endpoint_from_view_func = flask.scaffold._endpoint_from_view_func
 from flask import Flask, request, jsonify, make_response, render_template, url_for, redirect
 from flask_restful import Api
 from flask_jwt_extended import create_access_token, jwt_required, JWTManager, set_access_cookies, unset_jwt_cookies, get_jwt_identity
@@ -12,8 +14,9 @@ from functools import wraps
 # Initialize Flask app
 app = Flask(__name__,template_folder='templates')
 api = Api(app)
-app.config['SECRET_KEY'] = 'your secret key'
-app.config["JWT_TOKEN_LOCATION"] = ['headers']
+app.config['SECRET_KEY'] = 'fintechfinal'
+app.config["JWT_TOKEN_LOCATION"] = ['cookies']
+app.config["JWT_COOKIE_SECURE"] = False
 jwt = JWTManager(app)
 
 # api.add_resource(Users,'/all-users')
@@ -29,8 +32,7 @@ def login():
         return render_template('Login.html')
     else:
         # creates dictionary of form data
-        auth = request.form
-        
+        auth = request.get_json()
         if not auth or not auth.get('username') or not auth.get('password'):
             # returns 401 if any username or / and password is missing
             return make_response('Username or Password missing',401, {'WWW-Authenticate' : 'Basic realm ="Login required !!"'})
@@ -58,13 +60,15 @@ def logout():
     return response
 
 
-@app.route('/ticket')
+@app.route('/ticket', methods=["GET","POST"])
 @jwt_required()
 def ticket():
-    # Access the identity of the current user with get_jwt_identity
-    current_user = get_jwt_identity()
     return render_template('ticket.html')
 
+@app.route('/ticket_info', methods=["GET","POST"])
+@jwt_required()
+def ticket_info():
+    return render_template('ticket_info.html')
 
 # 以下註解部分為google官方提供的code
 # @app.route('/add', methods=['POST'])
