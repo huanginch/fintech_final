@@ -22,16 +22,27 @@ jwt = JWTManager(app)
 # api.add_resource(Users,'/all-users')
 # api.add_resource(User,'/user')
 
+#未授權的路由請求會重新導向至登入頁面 
+@jwt.unauthorized_loader
+def custom_unauthorized_response(_err):
+    return redirect(url_for('login'))
+
 @app.route('/')
 def index():
     return render_template('Home.html')
+
+@app.route('/home')
+@jwt_required()
+def home():
+    user = get_jwt_identity()
+    return render_template('Home.html', user=user)
 
 @app.route('/login', methods =['POST', 'GET'])
 def login():
     if request.method == 'GET' :
         return render_template('Login.html')
     else:
-        # creates dictionary of form data
+        # get json data from request
         auth = request.get_json()
         if not auth or not auth.get('username') or not auth.get('password'):
             # returns 401 if any username or / and password is missing
@@ -63,22 +74,26 @@ def logout():
 @app.route('/ticket', methods=["GET","POST"])
 @jwt_required()
 def ticket():
-    return render_template('ticket.html')
+    user = get_jwt_identity()
+    return render_template('ticket.html',user=user)
 
 @app.route('/ticket_info_1', methods=["GET","POST"])
 @jwt_required()
 def ticket_info_1():
-    return render_template('ticket_info_1.html')
+    user = get_jwt_identity()
+    return render_template('ticket_info_1.html',user=user)
 
 @app.route('/ticket_info_2', methods=["GET","POST"])
 @jwt_required()
 def ticket_info_2():
-    return render_template('ticket_info_2.html')
+    user = get_jwt_identity()
+    return render_template('ticket_info_2.html',user=user)
 
 @app.route('/ticket_info_3', methods=["GET","POST"])
 @jwt_required()
 def ticket_info_3():
-    return render_template('ticket_info_3.html')
+    user = get_jwt_identity()
+    return render_template('ticket_info_3.html',user=user)
 
 # 以下註解部分為google官方提供的code
 # @app.route('/add', methods=['POST'])

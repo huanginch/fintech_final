@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+</style>
+<body class="w3-light-grey">
+<div class="w3-bar w3-white w3-large">
+  {% if user %}
+    <a href="/home" class="w3-bar-item w3-button w3-red w3-mobile"><i class="fa fa-home w3-margin-right"></i>首頁</a>
+    <a href="/home#rooms" class="w3-bar-item w3-button w3-mobile">活動總覽</a>
+    <a href="/home#about" class="w3-bar-item w3-button w3-mobile">關於我們</a>
+    <a href="/home#contact" class="w3-bar-item w3-button w3-mobile">聯絡資訊</a>
+    <button class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile" onclick="logout()">登出</button>
+    <a class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">你好! {{user}}</a>
+  {% else %}
+    <a href="/" class="w3-bar-item w3-button w3-red w3-mobile"><i class="fa fa-home w3-margin-right"></i>首頁</a>
+    <a href="/#rooms" class="w3-bar-item w3-button w3-mobile">活動總覽</a>
+    <a href="/#about" class="w3-bar-item w3-button w3-mobile">關於我們</a>
+    <a href="/#contact" class="w3-bar-item w3-button w3-mobile">聯絡資訊</a>
+    <a href="/login" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">立即購票</a>
+  {% endif %}
+  </div>
+</body>
+</html>
+<script>
+  async function logout(){
+    const response = await fetch("/logout",{method:"post"})
+    if(response.ok){
+      alert("登出成功")
+      window.location.href="/"
+    }
+    
+    //window.location.href="/";
+  }
+</script>

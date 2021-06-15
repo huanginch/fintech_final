@@ -17,7 +17,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   <a href="/#rooms" class="w3-bar-item w3-button w3-mobile">活動總覽</a>
   <a href="/#about" class="w3-bar-item w3-button w3-mobile">關於我們</a>
   <a href="#contact" class="w3-bar-item w3-button w3-mobile">聯絡資訊</a>
-  <a href="/login" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">立即購票</a>
+  <!-- <a href="/login" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">立即購票</a> -->
 </div>
   <!-- Header -->
   <header class="w3-display-container w3-content" style="max-width:1500px;">
@@ -97,9 +97,10 @@ async function handleFormSubmit(event) {
 		const responseData = await postFormDataAsJson({ url, formData });
 
 		alert("login success");
-    window.location.href='/'
+    window.location.href='/home'
 	} catch (error) {
 		console.error(error);
+    alert("帳號或密碼錯誤");
 	}
 }
 
