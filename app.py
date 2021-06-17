@@ -7,7 +7,7 @@ from flask import Flask, request, jsonify, make_response, render_template, url_f
 from flask_restful import Api
 from flask_jwt_extended import create_access_token, jwt_required, JWTManager, set_access_cookies, unset_jwt_cookies, get_jwt_identity
 from firebase_admin import credentials, firestore, initialize_app
-from server.src.user import User
+# from server.src.user import User
 from datetime import datetime, timedelta
 from functools import wraps
 
