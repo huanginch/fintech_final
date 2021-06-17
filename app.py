@@ -11,6 +11,9 @@ from server.src.user import User
 from datetime import datetime, timedelta
 from functools import wraps
 
+#firebase-python
+import py_firebase
+
 # Initialize Flask app
 app = Flask(__name__,template_folder='templates')
 api = Api(app)
@@ -18,6 +21,8 @@ app.config['SECRET_KEY'] = 'fintechfinal'
 app.config["JWT_TOKEN_LOCATION"] = ['cookies']
 app.config["JWT_COOKIE_SECURE"] = False
 jwt = JWTManager(app)
+
+py_firebase.init()
 
 # api.add_resource(Users,'/all-users')
 # api.add_resource(User,'/user')
@@ -47,7 +52,19 @@ def login():
         if not auth or not auth.get('username') or not auth.get('password'):
             # returns 401 if any username or / and password is missing
             return make_response('Username or Password missing',401, {'WWW-Authenticate' : 'Basic realm ="Login required !!"'})
-    
+
+        ##compare auth.get('username') with firebase here
+        (log_success,username) = py_firebase.getData(auth,'login')
+
+        if log_success:
+            # generates the JWT Token
+            access_token = create_access_token(identity=username)
+            response = jsonify(access_token=access_token)
+            set_access_cookies(response, access_token)
+            return response
+        else:
+            return make_response('Wrong Username or Password',403, {'WWW-Authenticate' : 'Basic realm ="Wrong Password !!"'})
+"""
         user = User()
         
         if not user:
@@ -60,10 +77,9 @@ def login():
             response = jsonify(access_token=access_token)
             set_access_cookies(response, access_token)
             return response
-
         # returns 403 if password is wrong
         return make_response('Wrong Username or Password',403, {'WWW-Authenticate' : 'Basic realm ="Wrong Password !!"'})
-
+"""
 @app.route("/logout", methods=["POST"])
 def logout():
     response = jsonify({"msg": "logout successful"})
