@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 from functools import wraps
 
 #firebase-python
-import py_firebase
+from server.src import py_firebase
 
 # Initialize Flask app
 app = Flask(__name__,template_folder='templates')
