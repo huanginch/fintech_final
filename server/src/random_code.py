@@ -1,8 +1,16 @@
+from random import Random
 
-from random import randint
+str = ''
+chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789'
+length = len(chars) - 1
+random = Random()
 
-a = randint(10000000, 99999999)
-print(a)
+#生成16字的英數亂碼
+for i in range(16):
+    str+=chars[random.randint(0,length)]
+print(str)
+
+
 '''
 import random, string
 

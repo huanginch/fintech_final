@@ -88,6 +88,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
             <input type="radio" name="payType" value="VISA信用卡">VISA信用卡<br>
             <input type="radio" name="payType" value="街口支付">街口支付<br>
             </p>
+            <button class = "w3-button w3-black" onclick = "generatePaycode()">送出購票要求</button><br><br>
   </form>
    </div>
 
@@ -108,6 +109,23 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     function displayfont() {
       document.getElementById("contactUs").style.display = "block";
     }
+
+    //test3
+    function generatePaycode() {
+      var characters="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz012345678901234567890123456789";
+      var paycodelength=8;
+      var paycode = "";
+      var n = 0;
+      var randomnumber = 0;
+      while( n < paycodelength ) {
+        n ++;
+        randomnumber = Math.floor(characters.length*Math.random());
+        paycode += characters.substring(randomnumber,randomnumber + 1);
+      }
+      alert( "您的訂單編號是 " + paycode );
+    }
+    
+
     </script>
 <!-- End page content -->
 </div>
