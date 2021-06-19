@@ -21,13 +21,23 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 </div>
   <!-- Header -->
   <header class="w3-display-container w3-content" style="max-width:1500px;">
-    <img class="w3-image" src="/w3images/hotel.jpg" alt="The Hotel" style="min-width:1000px" width="1500" height="800">
+    <br>
+    <!-- <img class="w3-image" src="/w3images/hotel.jpg" alt="The Hotel" style="min-width:1000px" width="1500" height="800"> -->
   </header>
 
 <!-- Page content -->
 <div class = "w3-center w3-content" style="background-color: white; max-width: 500px;">
 <form action="/login" id=login-form>
   <br>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <p class=flashes>
+    {% for message in messages %}
+      <p style="color:red; font-size:25px">{{ message }}</p>
+    {% endfor %}
+    </p>
+    {% endif %}
+  {% endwith %}
   <i class="fa fa-envelope"> 帳號 ： </i><input class='w3-text-black' type="text" name="username" id="username"><br><br>
   <i class="fa fa-key"></i> 密碼 ： <input class='w3-text-black' type="text" name="password" id="username"><br><br>
   <button class="w3-button w3-block w3-black" value='submit'>登入</button>

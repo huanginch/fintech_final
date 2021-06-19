@@ -3,7 +3,7 @@
 # Required imports
 import flask.scaffold
 flask.helpers._endpoint_from_view_func = flask.scaffold._endpoint_from_view_func
-from flask import Flask, request, jsonify, make_response, render_template, url_for, redirect
+from flask import Flask, request, jsonify, make_response, render_template, url_for, redirect, flash
 from flask_restful import Api
 from flask_jwt_extended import create_access_token, jwt_required, JWTManager, set_access_cookies, unset_jwt_cookies, get_jwt_identity
 from firebase_admin import credentials, firestore, initialize_app
@@ -29,10 +29,13 @@ py_firebase.init()
 #未授權的路由請求會重新導向至登入頁面 
 @jwt.unauthorized_loader
 def custom_unauthorized_response(_err):
+    flash("請先登入")
     return redirect(url_for('login'))
 
+# 連線逾時會重新導向到登入頁面
 @jwt.expired_token_loader
 def expired_token_callback(jwt_header, jwt_payload):
+    flash("連線逾時，請重新登入")
     return redirect(url_for('login'))
 
 @app.route('/')
