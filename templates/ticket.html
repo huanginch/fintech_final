@@ -87,8 +87,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
             <input type="radio" name="payType" value="轉帳">ATM轉帳<br>
             <input type="radio" name="payType" value="VISA信用卡">VISA信用卡<br>
             <input type="radio" name="payType" value="街口支付">街口支付<br>
+
             </p> -->
-            <a herf="/cart" class = "w3-button w3-black" onclick = "generatePaycode()">前往付款</a><br><br>
+            </p>
+            <button class = "w3-button w3-black" onclick = "generatePaycode()">送出購票要求</button><br><br>
+            <div id="qrcode"></div>
   </form>
    </div>
 
