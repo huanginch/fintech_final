@@ -13,6 +13,11 @@ from functools import wraps
 #firebase-python
 from server.src import py_firebase
 
+# 藍星api
+from datetime import time
+import time
+from server.src.Crypto import *
+
 # Initialize Flask app
 app = Flask(__name__,template_folder='templates')
 api = Api(app)
@@ -116,6 +121,27 @@ def ticket_info_2():
 def ticket_info_3():
     user = get_jwt_identity()
     return render_template('ticket_info_3.html',user=user)
+
+@app.route('/cart', methods=["GET","POST"])
+@jwt_required()
+def cart():
+    data = {
+        "MerchantID":"MS120905494",
+        "RespondType":"JSON",
+        "TimeStamp": str(int(time.time())),
+        "Version":"1.6",
+        "MerchantOrderNo":"S_"+str(int(time.time())),
+        "Amt":"10000",
+        "ItemDesc":"Text",
+        "Email":"s24527109@gmail.com",
+        "LoginType":"0"
+    }
+    parse_data = gen_query_string(data)
+    trade_info = create_mpg_aes_encrypt(parse_data.encode())
+    trade_sha = create_mpg_sha_encrypt(trade_info)
+
+    user = get_jwt_identity()
+    return render_template('cart.html',user=user,trade_info=trade_info,trade_sha=trade_sha)
 
 # 以下註解部分為google官方提供的code
 # @app.route('/add', methods=['POST'])
