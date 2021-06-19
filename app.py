@@ -143,6 +143,18 @@ def cart():
     user = get_jwt_identity()
     return render_template('cart.html',user=user,trade_info=trade_info,trade_sha=trade_sha)
 
+@app.route('/myticket', methods=["GET","POST"])
+@jwt_required()
+def myticket():
+    if request.method == 'GET' :
+        return render_template('qrcode.html')
+    else:
+        data = request.get_json()
+        qrcode = data.get('qrcode')
+        event = data.get('event')
+        ticket_type = data.get('ticket_type')
+    
+
 # 以下註解部分為google官方提供的code
 # @app.route('/add', methods=['POST'])
 # def create():

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <input class='w3-text-black' type="text" name="qrcode" id="qrcode">
+        <input class='w3-text-black' type="text" name="event" id="event">
+        <input class='w3-text-black' type="text" name="ticket_type" id="ticket_type">
+        <button onclick="myticket()">送出</button>
+    </body>
+</html>
+<script>
+   async function myticket(){
+    const data = {
+        qrcode: document.getElementById('qrcode'),
+        event: document.getElementById('event'),
+        ticket_type: document.getElementById('ticket_type')
+    }
+    const response = await fetch("/myticket",{method:"post", body:data})
+    if(response.ok){
+      console.log("成功")
+    }
+  } 
+</script>
