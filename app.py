@@ -75,22 +75,7 @@ def login():
             return response
         else:
             return make_response('Wrong Username or Password',403, {'WWW-Authenticate' : 'Basic realm ="Wrong Password !!"'})
-"""
-        user = User()
-        
-        if not user:
-            # returns 403 if user does not exist
-            return make_response("User Not Found",403, {'WWW-Authenticate' : 'Basic realm ="User does not exist !!"'})
-    
-        if (user.username == auth.get('username') and user.password == auth.get('password')):
-            # generates the JWT Token
-            access_token = create_access_token(identity=user.username)
-            response = jsonify(access_token=access_token)
-            set_access_cookies(response, access_token)
-            return response
-        # returns 403 if password is wrong
-        return make_response('Wrong Username or Password',403, {'WWW-Authenticate' : 'Basic realm ="Wrong Password !!"'})
-"""
+
 @app.route("/logout", methods=["POST"])
 def logout():
     response = jsonify({"msg": "logout successful"})
@@ -153,6 +138,9 @@ def myticket():
         qrcode = data.get('qrcode')
         event = data.get('event')
         ticket_type = data.get('ticket_type')
+        username = get_jwt_identity()
+        json = {'qrcode':qrcode , 'event':event , 'ticket_type': ticket_type , 'username':username}
+        py_firebase.setData(json,"addTicket")
     
 
 # 以下註解部分為google官方提供的code
