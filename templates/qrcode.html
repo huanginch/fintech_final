@@ -1,13 +1,30 @@
 <!DOCTYPE html>
+<script src="templates/jquery-3.6.0.min.js"></script>
 <html>
     <body>
-        <input class='w3-text-black' type="text" name="qrcode" id="qrcode">
+        <input class='w3-text-black' type="text" name="qrcode" id="qrcode"></input>
         <input class='w3-text-black' type="text" name="event" id="event">
         <input class='w3-text-black' type="text" name="ticket_type" id="ticket_type">
         <button onclick="myticket()">送出</button>
     </body>
+    <h2>
+      自訂size (120x120)
+      </h2>
+      <div id="qrcode">
+        <div class="w3-row-padding w3-padding-16">
+          <div class="w3-third w3-margin-bottom">
+            <!--<img src="{{ img_path }}" alt="YourQRcode" style="width:30%">-->
+            <img src="qr\test2.png" alt="YourQRcode" style="width:30%">
+            <div class="w3-container w3-white">
+              <h3>票券編號</h3>
+              
+            </div>
+          </div>
+      </div>
 </html>
+
 <script>
+   //new QRCode(document.getElementById("qrcode"), "22121210");  // 設置QRcode
    async function myticket(){
     const data = {
         qrcode: document.getElementById('qrcode'),
@@ -18,5 +35,8 @@
     if(response.ok){
       console.log("成功")
     }
-  } 
+  }
+  
+  
+
 </script>

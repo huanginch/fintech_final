@@ -18,6 +18,10 @@ from datetime import time
 import time
 from server.src.Crypto import *
 
+# qrcode
+from server.src import QRcode
+
+
 # Initialize Flask app
 app = Flask(__name__,template_folder='templates')
 api = Api(app)
@@ -93,19 +97,34 @@ def ticket():
 @jwt_required()
 def ticket_info_1():
     user = get_jwt_identity()
-    return render_template('ticket_info_1.html',user=user)
+    data = {
+        "username" : user,
+        "event" : "文藝復興"
+    }
+    check = py_firebase.getData(data,"checkTicket")
+    return render_template('ticket_info_1.html',user=user,check=check,data=data)
 
 @app.route('/ticket_info_2', methods=["GET","POST"])
 @jwt_required()
 def ticket_info_2():
     user = get_jwt_identity()
-    return render_template('ticket_info_2.html',user=user)
+    data = {
+        "username" : user,
+        "event" : "演唱會"
+    }
+    check = py_firebase.getData(data,"checkTicket")
+    return render_template('ticket_info_2.html',user=user,check=check,data=data)
 
 @app.route('/ticket_info_3', methods=["GET","POST"])
 @jwt_required()
 def ticket_info_3():
     user = get_jwt_identity()
-    return render_template('ticket_info_3.html',user=user)
+    data = {
+        "username" : user,
+        "event" : "粽協"
+    }
+    check = py_firebase.getData(data,"checkTicket")
+    return render_template('ticket_info_3.html',user=user,check=check,data=data)
 
 @app.route('/cart', methods=["GET","POST"])
 @jwt_required()
@@ -141,6 +160,15 @@ def myticket():
         username = get_jwt_identity()
         json = {'qrcode':qrcode , 'event':event , 'ticket_type': ticket_type , 'username':username}
         py_firebase.setData(json,"addTicket")
+
+@app.route('/qrcode', methods=["GET","POST"])
+@jwt_required()
+
+def qrcode():
+    user = get_jwt_identity()
+    QRcode.QRcode()
+    img_path = QRcode.qrPath()
+    return render_template('qrcode.html',user=user,img_path=img_path)
     
 
 # 以下註解部分為google官方提供的code

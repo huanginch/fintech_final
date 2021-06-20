@@ -49,9 +49,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
                     <h6 class="w3-left-align">開賣時間：2021/06/25 00:00:00</h6>
                     <h6 class="w3-left-align">預售截止：2021/09/21</h6>
                     <div class="w3-section">
-                    <a href="/ticket" class="w3-button w3-green">
-                        <i class="fa fa-shopping-cart"> 立即購票</i>
-                    </a>
+                        <form action="/cart" method="GET">
+                            <button id = "check" type="submit" class="w3-button w3-green" name="title" value="會動的文藝復興">
+                                <p id = "check_info" style="font-size: 10px;"><i class="fa fa-shopping-cart fa-2x"> 立即購票</i></p>
+                                <!-- debug : <p>{{data}}</p>  -->
+                                <input id = "check_data" type="hidden" value="{{check}}"></input>
+                            </button>
+                        </form>
                     </div>
                 </div>
                 </div>
@@ -95,6 +99,20 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     </div>
     <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
 </footer>
+
+<script>
+// 限購一張票
+check = document.getElementById("check_data").value;
+console.log(check);
+if(check=="True"){
+    var btn = document.getElementById("check")
+    btn.disabled = true
+    btn.classList.add("w3-red");
+
+    var btn_info = document.getElementById("check_info")
+    btn_info.innerHTML = "已達購票上限";
+    btn_info.style.fontSize = "15px";
+</script>
 
 <script>
     var slideIndex = 1;

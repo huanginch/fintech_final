@@ -54,34 +54,35 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <div class="w3-third w3-margin-bottom">
       <div class="w3-container w3-white">
         <h3 id ='tarea1'>前排搖滾區</h3>
-        <h6 id = 'price1' class="w3-opacity">2400</h6>
+        <h6 id = 'price1' class="w3-opacity">$2400</h6>
         <p id = 'titype1'>站票</p>
-        <button class="w3-button w3-block w3-black w3-margin-bottom" id='t1' onclick="getinfo1()">Choose tickets</button>
+        <button class="w3-button w3-block w3-black w3-margin-bottom" id='t1' onclick="getinfo1()">選擇此票種</button>
       </div>
     </div>
     <div class="w3-third w3-margin-bottom">
         <div class="w3-container w3-white">
           <h3 id ='tarea2'>後排座位區</h3>
-          <h6 id = 'price2' class="w3-opacity">1800</h6>
+          <h6 id = 'price2' class="w3-opacity">$1800</h6>
           <p id = 'titype2'>對號座位票</p>
-          <button class="w3-button w3-block w3-black w3-margin-bottom" id='t2' onclick="getinfo2()">Choose tickets</button>
+          <button class="w3-button w3-block w3-black w3-margin-bottom" id='t2' onclick="getinfo2()">選擇此票種</button>
         </div>
       </div>
       <div class="w3-third w3-margin-bottom">
         <div class="w3-container w3-white">
           <h3 id ='tarea3'>2樓看台區</h3>
-          <h6 id = 'price3' class="w3-opacity">1200</h6>
+          <h6 id = 'price3' class="w3-opacity">$1200</h6>
           <p id = 'titype3'>對號座位票</p>
-          <button class="w3-button w3-block w3-black w3-margin-bottom" id = 't3' onclick="getinfo3()">Choose tickets</button>
+          <button class="w3-button w3-block w3-black w3-margin-bottom" id = 't3' onclick="getinfo3()">選擇此票種</button>
         </div>
       </div>
   </div>
     <div  id='tf' class="w3-container" style='background-color: darkgray; display: none;'>
   <form>
         <!-- <p>請輸入您的姓名 ： <input class='w3-text-black' type="text" name="訂票者姓名"><br><br>
-            請輸入您的電話 ： <input class='w3-text-black' type="text" name="訂票者電話"><br><br> -->
+            請輸入您的電話 ： <input class='w3-text-black' type="text" name="訂票者電話">-->
+            <br><br> 
             您的票種 ： <i id='ticketType'></i><br><br>
-            您的票價 ： <i id='ticketPrice'></i><br><br>
+            您的票價 ： $<i id='ticketPrice'></i><br><br>
             <!-- 請選擇付款方式 ： <br>
             <input type="radio" name="payType" value="貨到付款">貨到付款<br>
             <input type="radio" name="payType" value="轉帳">ATM轉帳<br>
@@ -96,7 +97,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
    </div>
 
   <div class="w3-container" id="contact">
-    <p>如果您有任何問題可以留下您的資料，我們將會盡快回復您</p>
+    <p>若有任何問題請留下您的資料，我們將會盡快回復您！</p>
     <button class = "w3-button w3-black" onclick = "displayfont()">聯絡我們</button>
     <ul id='contactUs' style='display:none; list-style: none;'>
         <li><i class="fa fa-map-marker w3-text-black" style="width:30px; display: inline;">台灣,嘉義</i><br></li>
@@ -105,7 +106,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
         <li><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="您的名字" required name="您的名字"></li>
         <li><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="您的Email" required name="您的Email"></li>
         <li><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="您的建議" required name="您的建議"></li>
-        <li><button class="w3-button w3-black w3-padding-large" type="submit">送出建議</button></li>
+        <li><a href='/qrcode' class="w3-button w3-black w3-padding-large" type="submit">送出建議</a></li>
       </ul>
   </div>
   <script>
