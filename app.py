@@ -23,7 +23,7 @@ from server.src import QRcode
 
 
 # Initialize Flask app
-app = Flask(__name__,template_folder='templates')
+app = Flask(__name__,template_folder='templates',static_url_path='')
 api = Api(app)
 app.config['SECRET_KEY'] = 'fintechfinal'
 app.config["JWT_TOKEN_LOCATION"] = ['cookies']
@@ -166,9 +166,9 @@ def myticket():
 
 def qrcode():
     user = get_jwt_identity()
-    QRcode.QRcode()
-    img_path = QRcode.qrPath()
-    return render_template('qrcode.html',user=user,img_path=img_path)
+    #QRcode.QRcode()
+    #img_path = QRcode.qrPath()
+    return render_template('qrcode.html',user=user)
     
 
 # 以下註解部分為google官方提供的code
