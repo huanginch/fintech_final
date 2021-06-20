@@ -16,19 +16,38 @@ def init():
 def checkLogin(auth,ref):
     username = auth.get('username')
     password = auth.get('password')
-    for account in ref.get().values():
-        if username in account:
-            return (password == account[username] , username)
+    userlist = ref.get()
+    if username in userlist:
+        return (password == userlist[username]['password'] , username)
 
 
 
-def getData(auth,method):
+def getData(data,method):
     ref = db.reference("/")
-    if method == 'login':
+    if method == 'login':                   #to login , data = {auth}
         ref = db.reference("/userAccount")
-        return checkLogin(auth,ref)
+        return checkLogin(data,ref)
+    
+   
+    elif method == 'checkTicket':   #check if ticket has been bought , data = {username,event} , returns true if bought before
+        username = data['username']
+        eventName = data['event']
+        ref = db.reference("/userAccount/"+username+"/tickets")
+        for ticket in ref.get().keys():
+            if eventName == ticket:
+                return True
+        return False
     else:
         return "undefined method"
+    
+
+
+def setData(data,method):
+    if method == "addTicket":       #data = {username , qrcode, event, ticket_type}
+        ref = db.reference("/userAccount/"+data['username']+"/tickets/"+data['event'])
+        data.pop('username')
+        data.pop('event')
+        ref.update(data)
 
 
 
@@ -38,10 +57,15 @@ def generate_data():
 	'databaseURL':'https://fintech-61df3-default-rtdb.firebaseio.com/'
 	})
     ref = db.reference("/userAccount")
-    ref.push({'raccoon':'smart'})
-    ref.push({'gahua':"corgi87"})
-    ref.push({'deptmis':'deptmis'})
-    ref.push({'test':'test'})
+    ref.child('raccoon').set({'password' : 'smart'})
+    ref.child('gahua').set({'password' : 'corgi87'})
+    ref.child('test').set({'password' : 'test'})
+    ref.child('gahua').update({
+    'nickname': 'CORGI'
+        })
+
+    print(ref.get())
+    print(ref.get()['gahua']['password'])
 
 
 #generate_data()
