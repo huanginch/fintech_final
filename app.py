@@ -161,15 +161,7 @@ def myticket():
         json = {'qrcode':qrcode , 'event':event , 'ticket_type': ticket_type , 'username':username}
         py_firebase.setData(json,"addTicket")
 
-@app.route('/qrcode', methods=["GET","POST"])
-@jwt_required()
 
-def qrcode():
-    user = get_jwt_identity()
-    #QRcode.QRcode()
-    #img_path = QRcode.qrPath()
-    return render_template('qrcode.html',user=user)
-    
 
 # 以下註解部分為google官方提供的code
 # @app.route('/add', methods=['POST'])
