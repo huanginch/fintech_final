@@ -93,19 +93,34 @@ def ticket():
 @jwt_required()
 def ticket_info_1():
     user = get_jwt_identity()
-    return render_template('ticket_info_1.html',user=user)
+    data = {
+        "username" : user,
+        "event" : "文藝復興"
+    }
+    check = py_firebase.getData(data,"checkTicket")
+    return render_template('ticket_info_1.html',user=user,check=check,data=data)
 
 @app.route('/ticket_info_2', methods=["GET","POST"])
 @jwt_required()
 def ticket_info_2():
     user = get_jwt_identity()
-    return render_template('ticket_info_2.html',user=user)
+    data = {
+        "username" : user,
+        "event" : "演唱會"
+    }
+    check = py_firebase.getData(data,"checkTicket")
+    return render_template('ticket_info_2.html',user=user,check=check,data=data)
 
 @app.route('/ticket_info_3', methods=["GET","POST"])
 @jwt_required()
 def ticket_info_3():
     user = get_jwt_identity()
-    return render_template('ticket_info_3.html',user=user)
+    data = {
+        "username" : user,
+        "event" : "粽協"
+    }
+    check = py_firebase.getData(data,"checkTicket")
+    return render_template('ticket_info_3.html',user=user,check=check,data=data)
 
 @app.route('/cart', methods=["GET","POST"])
 @jwt_required()
