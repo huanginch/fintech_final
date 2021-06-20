@@ -4,10 +4,10 @@ from Crypto.Util.Padding import pad # pad補滿密文(16倍數)
 import hashlib
 
 # Formatted: b for bytes/ s for strings
-bkey = b"4Mh1NVICHpQYQM9CoCd1Kh7apDZMQrT1"
-bIvs = b"CIh3PVp21MrXvXyP"
-sKey= "4Mh1NVICHpQYQM9CoCd1Kh7apDZMQrT1"
-sIvs = "CIh3PVp21MrXvXyP"
+bkey = b"Zsw1hcMSsUXaYD6KkNXp51CYPownOs2Q"
+bIvs = b"C4eSt2R0mnZRadfP"
+sKey= "Zsw1hcMSsUXaYD6KkNXp51CYPownOs2Q"
+sIvs = "C4eSt2R0mnZRadfP"
 
 def create_mpg_aes_encrypt(data):
     cipher = AES.new(bkey,AES.MODE_CBC,iv=bIvs)

@@ -34,12 +34,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
         <h5 class="w3-left-align">
             <i class="fa fa-money"></i> 
             票價<br>
-            1800
+            2400
         </h5>
         <h5 class="w3-left-align">
             <i class="fa fa-calendar"></i> 
             日期<br>
-            2021/1/1
+            2021/04/26
         </h5>
     </div>
 
@@ -47,20 +47,20 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <div class="w3-half w3-container">
         <h3 class="w3-border-bottom w3-left-align" style="font-weight: bold;">購買人資訊</h3>
         <form  action="https://ccore.newebpay.com/MPG/mpg_gateway" method="POST">
-            <input type="hidden" name="MerchantID" value="MS120905494"/>
+            <input type="hidden" name="MerchantID" value="MS121046056"/>
             <input type="hidden" name="TradeInfo" value="{{ trade_info }}"/>
             <input type="hidden" name="TradeSha" value="{{ trade_sha }}"/>
             <input type="hidden" name="Version" value="1.6"/>
             <p class="w3-left-align">
-                <input class="w3-input w3-border w3-round" type="text" name="name" placeholder="請輸入購買人姓名"/>
-                <i class="fa fa-asterisk" style="color: teal;"aria-hidden="true">務必正確輸入購買人姓名以確保實名制。</i>
+                <input class="w3-input w3-border w3-round" type="text" name="name" placeholder="請輸入購買人身分證" required="required" />
+                <i class="fa fa-asterisk" style="color: teal;"aria-hidden="true">務必正確輸入購買人身分證以確保實名制。</i>
             </p>
             <p class="w3-left-align">
-                <input class="w3-input w3-border w3-round" type="text" name="name" placeholder="請輸入聯絡電話"/>
+                <input class="w3-input w3-border w3-round" type="text" name="name" placeholder="請輸入聯絡電話" required="required" />
                 <i class="fa fa-asterisk" style="color: teal;"aria-hidden="true">務必正確輸入購買人電話以確保實名制。</i>
             </p>
             <p class="w3-left-align">
-            <input class="w3-input w3-border w3-round" type="text" name="name" placeholder="name@example.com"/>
+            <input class="w3-input w3-border w3-round" type="email" name="name" placeholder="name@example.com" required="required" />
             </p>
             <input class="w3-btn w3-padding w3-teal w3-right"type="submit" value="下一步"/>
         </form>

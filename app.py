@@ -90,8 +90,9 @@ def logout():
 @app.route('/ticket', methods=["GET","POST"])
 @jwt_required()
 def ticket():
+    title = request.args.get("title")
     user = get_jwt_identity()
-    return render_template('ticket.html',user=user)
+    return render_template('ticket.html',user=user,title=title)
 
 @app.route('/ticket_info_1', methods=["GET","POST"])
 @jwt_required()
@@ -130,13 +131,13 @@ def ticket_info_3():
 @jwt_required()
 def cart():
     data = {
-        "MerchantID":"MS120905494",
+        "MerchantID":"MS121046056",
         "RespondType":"JSON",
         "TimeStamp": str(int(time.time())),
         "Version":"1.6",
         "MerchantOrderNo":"S_"+str(int(time.time())),
-        "Amt":"10000",
-        "ItemDesc":"Text",
+        "Amt":"2400",
+        "ItemDesc":"BACK TO 70’S 西洋金曲演唱會",
         "Email":"s24527109@gmail.com",
         "LoginType":"0"
     }
