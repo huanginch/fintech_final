@@ -20,7 +20,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 <div class="w3-content" style="max-width:1532px;">
 
   <div class="w3-container w3-margin-top" id="rooms">
-    <h3>選擇您的票種</h3>
+    <h3>選擇您的票種：{{title}}</h3>
     </div>
   
   <script>
@@ -31,6 +31,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       document.getElementById("tf").style.display = 'block';
       document.getElementById("ticketType").innerHTML = ticketArea+','+ticketType;
       document.getElementById("ticketPrice").innerHTML = price;
+      document.getElementById("in_ticketType").value = ticketArea+','+ticketType;
+      document.getElementById("in_ticketPrice").value = price;
 }
     function getinfo2() {
       var ticketArea = document.getElementById('tarea2').innerHTML
@@ -39,14 +41,18 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       document.getElementById("tf").style.display = 'block';
       document.getElementById("ticketType").innerHTML = ticketArea+','+ticketType;
       document.getElementById("ticketPrice").innerHTML = price;
+      document.getElementById("in_ticketType").value = ticketArea+','+ticketType;
+      document.getElementById("in_ticketPrice").value = price;
 }
     function getinfo3() {
       var ticketArea = document.getElementById('tarea3').innerHTML
       var ticketType = document.getElementById('titype3').innerHTML
-      var price = document.getElementById('price2').innerHTML
+      var price = document.getElementById('price3').innerHTML
       document.getElementById("tf").style.display = 'block';
       document.getElementById("ticketType").innerHTML = ticketArea+','+ticketType;
       document.getElementById("ticketPrice").innerHTML = price;
+      document.getElementById("in_ticketType").value = ticketArea+','+ticketType;
+      document.getElementById("in_ticketPrice").value = price;
 }
   </script>
 
@@ -77,24 +83,19 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       </div>
   </div>
     <div  id='tf' class="w3-container" style='background-color: darkgray; display: none;'>
-  <form>
-        <!-- <p>請輸入您的姓名 ： <input class='w3-text-black' type="text" name="訂票者姓名"><br><br>
-            請輸入您的電話 ： <input class='w3-text-black' type="text" name="訂票者電話">-->
-            <br><br> 
-            您的票種 ： <i id='ticketType'></i><br><br>
-            您的票價 ： $<i id='ticketPrice'></i><br><br>
-            <!-- 請選擇付款方式 ： <br>
-            <input type="radio" name="payType" value="貨到付款">貨到付款<br>
-            <input type="radio" name="payType" value="轉帳">ATM轉帳<br>
-            <input type="radio" name="payType" value="VISA信用卡">VISA信用卡<br>
-            <input type="radio" name="payType" value="街口支付">街口支付<br>
-
-            </p> -->
-            </p>
-            <a href="/cart" class = "w3-button w3-black" onclick = "generatePaycode()">送出購票要求</a><br><br>
-            <div id="qrcode"></div>
+  <form action="/cart" method="POST">
+        <br><br>
+        您的票種 ： <i id='ticketType'></i><br><br>
+        您的票價 ： <i id='ticketPrice'></i><br><br>
+        <input type="hidden" name="user" value="{{ user }}"></input>
+        <input type="hidden" name="title" value="{{ title }}"></input>
+        <input id='in_ticketType' type="hidden" name="ticketType"></input>
+        <input id='in_ticketPrice' type="hidden" name="ticketPrice"></input>
+        <button type="submit" class="w3-button w3-black" value="送出購票要求">送出購票要求</button>
+        <!-- <a href="/cart" class = "w3-button w3-black" onclick = "generatePaycode()">送出購票要求</a><br><br> -->
+        <div id="qrcode"></div>
   </form>
-   </div>
+  </div>
 
   <div class="w3-container" id="contact">
     <p>若有任何問題請留下您的資料，我們將會盡快回復您！</p>

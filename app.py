@@ -88,10 +88,14 @@ def logout():
 
 
 @app.route('/ticket', methods=["GET","POST"])
-@jwt_required()
+#@jwt_required()
 def ticket():
-    user = get_jwt_identity()
-    return render_template('ticket.html',user=user)
+    if request.method == "POST":
+        user = request.values.get('user')
+        # print(user)
+        title = request.values.get("title")
+        # print(title)
+        return render_template('ticket.html',user=user,title=title)
 
 @app.route('/ticket_info_1', methods=["GET","POST"])
 @jwt_required()
@@ -99,9 +103,10 @@ def ticket_info_1():
     user = get_jwt_identity()
     data = {
         "username" : user,
-        "event" : "文藝復興"
+        "event" : "夏至藝術節-誰怕虎姑婆"
     }
     check = py_firebase.getData(data,"checkTicket")
+    print(check)
     return render_template('ticket_info_1.html',user=user,check=check,data=data)
 
 @app.route('/ticket_info_2', methods=["GET","POST"])
@@ -110,7 +115,7 @@ def ticket_info_2():
     user = get_jwt_identity()
     data = {
         "username" : user,
-        "event" : "演唱會"
+        "event" : "BACK TO 70’S 西洋金曲演唱會"
     }
     check = py_firebase.getData(data,"checkTicket")
     return render_template('ticket_info_2.html',user=user,check=check,data=data)
@@ -121,31 +126,71 @@ def ticket_info_3():
     user = get_jwt_identity()
     data = {
         "username" : user,
-        "event" : "粽協"
+        "event" : "粽邪怨靈鬼屋-生人勿近"
     }
     check = py_firebase.getData(data,"checkTicket")
     return render_template('ticket_info_3.html',user=user,check=check,data=data)
 
 @app.route('/cart', methods=["GET","POST"])
-@jwt_required()
+# @jwt_required()
 def cart():
-    data = {
-        "MerchantID":"MS120905494",
-        "RespondType":"JSON",
-        "TimeStamp": str(int(time.time())),
-        "Version":"1.6",
-        "MerchantOrderNo":"S_"+str(int(time.time())),
-        "Amt":"10000",
-        "ItemDesc":"Text",
-        "Email":"s24527109@gmail.com",
-        "LoginType":"0"
-    }
-    parse_data = gen_query_string(data)
-    trade_info = create_mpg_aes_encrypt(parse_data.encode())
-    trade_sha = create_mpg_sha_encrypt(trade_info)
+    if request.method == "POST":
+        user = request.values.get('user')
+        title = request.values.get('title')
+        ticketType = request.values.get('ticketType')
+        ticketPrice = request.values.get('ticketPrice')
+        data = {
+            "MerchantID":"MS120905494",
+            "RespondType":"JSON",
+            "TimeStamp": str(int(time.time())),
+            "Version":"1.6",
+            "MerchantOrderNo":"S_"+str(int(time.time())),
+            "Amt":ticketPrice[1:],
+            "ItemDesc":title,
+            "Email":"s24527109@gmail.com",
+            "LoginType":"0"
+        }
+        parse_data = gen_query_string(data)
+        trade_info = create_mpg_aes_encrypt(parse_data.encode())
+        trade_sha = create_mpg_sha_encrypt(trade_info)
 
-    user = get_jwt_identity()
-    return render_template('cart.html',user=user,trade_info=trade_info,trade_sha=trade_sha)
+        return render_template('cart.html',user=user,title=title,ticketType=ticketType,ticketPrice=ticketPrice,trade_info=trade_info,trade_sha=trade_sha)
+
+@app.route('/save_cart', methods=["GET","POST"])
+# @jwt_required()
+def save_cart():
+    if request.method == "POST":
+        user = request.values.get('user')
+        title = request.values.get('title')
+        ticketType = request.values.get('ticketType')
+        ticketPrice = request.values.get('ticketPrice')
+        name = request.values.get('name')
+        email = request.values.get('email')
+        ID = request.values.get('ID')
+        # print(user)
+        data = {
+            "MerchantID":"MS120905494",
+            "RespondType":"JSON",
+            "TimeStamp": str(int(time.time())),
+            "Version":"1.6",
+            "MerchantOrderNo":"S_"+str(int(time.time())),
+            "Amt":ticketPrice[1:],
+            "ItemDesc":title,
+            "Email":email,
+            "LoginType":"0"
+        }
+        setdata = {
+            "username":user,
+            "qrcode":"aaa",
+            "event":title,
+            "ticket_type":ticketType
+        }
+        py_firebase.setData(setdata,"addTicket")
+        parse_data = gen_query_string(data)
+        trade_info = create_mpg_aes_encrypt(parse_data.encode())
+        trade_sha = create_mpg_sha_encrypt(trade_info)
+
+        return render_template('save_cart.html',user=user,title=title,ticketType=ticketType,ticketPrice=ticketPrice,name=name,email=email,ID=ID,trade_info=trade_info,trade_sha=trade_sha)
 
 @app.route('/myticket', methods=["GET","POST"])
 @jwt_required()
