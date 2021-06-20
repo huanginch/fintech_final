@@ -33,10 +33,13 @@ def getData(data,method):
         username = data['username']
         eventName = data['event']
         ref = db.reference("/userAccount/"+username+"/tickets")
-        for ticket in ref.get().keys():
-            if eventName == ticket:
-                return True
-        return False
+        if ref.get() != None:
+            for ticket in ref.get().keys():
+                if eventName == ticket:
+                    return True
+            return False
+        else:                             #not any ticket has been bought yet
+            return False
     else:
         return "undefined method"
     
@@ -66,6 +69,8 @@ def generate_data():
 
     print(ref.get())
     print(ref.get()['gahua']['password'])
+    ref = db.reference("aaa")
+    print(ref.get() != None)
 
 
 #generate_data()
