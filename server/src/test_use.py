@@ -19,7 +19,8 @@ json = {'qrcode':qrcode , 'event':event , 'ticket_type': ticket_type , 'username
 py_firebase.init()
 
 py_firebase.setData(json,"addTicket")
-
+json2 = {'qrcode':"test2" , 'event':"test2" , 'ticket_type': "test2" , 'username':username}
+py_firebase.setData(json2,"addTicket")
 test = {'username':'gahua', 'event': "粽協"}
 test2 = {'username':'gahua', 'event': "柯基跳舞秀"}
 
