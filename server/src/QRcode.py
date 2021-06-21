@@ -7,7 +7,7 @@ import os
 def QRcode():
     qr = qrcode.QRCode(version = 1,box_size = 14,border = 3)
     a = randint(10000000, 99999999)
-    DIR = 'static'  #要統計的資料夾
+    DIR = 'static/'  #要統計的資料夾
     num = len([name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, name))])
     data = str(a)
     text = str(num) #要抽換的字
@@ -16,13 +16,14 @@ def QRcode():
     img = qr.make_image(fill = 'black', back_color = 'white')
     loc = ('static/test{}.png'.format(text))
     img.save(loc)
+    #return data
 
 def qrPath():
-    DIR = 'templates/qr'  #要統計的資料夾
+    DIR = 'static/'  #要統計的資料夾
     num = len([name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, name))])-1
     text = str(num) #要抽換的字
-    loc = ('static/test{}.png'.format(text))
+    loc = ('test{}.png'.format(text))
     return loc
-QRcode()
+#QRcode()
 
 #print(qrPath())

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<title>防黃牛售票網</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+</style>
+<body class="w3-light-grey">
+
+<!-- Navigation Bar -->
+{%include "NavBar.html"%}
+<!-- Header -->
+
+
+<!-- Page content -->
+<div class="w3-display-container w3-center">
+    <div class="w3-container w3-display-topmiddle w3-card-4 w3-white w3-padding-16" style="width:50%; margin-top: 50px;">
+    <h1 class="w3-center-align w3-margin-bottom" style="font-weight: bold;">
+        確認結帳資訊
+    </h1>
+    <!-- half:票券資訊 -->
+    <div class="w3-container">
+        <h3 class="w3-left-align w3-border-bottom" style="font-weight: bold;">購買資訊</h3>
+        <div class="w3-half w3-container">
+            <h5 class="w3-left-align ">
+                <i class="fa fa-ticket"></i> 
+                活動名稱<br>
+                {{ title }}
+            </h5>
+            <h5 class="w3-left-align ">
+                <i class="fa fa-info-circle"></i> 
+                票種<br>
+                {{ticketType}}
+            </h5>
+            <h5 class="w3-left-align">
+                <i class="fa fa-money"></i> 
+                票價<br>
+                {{ticketPrice}}
+            </h5>
+        </div>
+        <div class="w3-half w3-container">
+            <h5 class="w3-left-align ">
+                <i class="fa fa-info-circle"></i> 
+                電話<br>
+                {{ name }}
+            </h5>
+            <h5 class="w3-left-align ">
+                <i class="fa fa-id-card"></i> 
+                身分證<br>
+                {{ID}}
+            </h5>
+            <h5 class="w3-left-align">
+                <i class="fa fa-envelope"></i> 
+                信箱<br>
+                {{email}}
+            </h5>
+        </div>
+        <form id="myform" onsubmit="window.location.href = '/home'" action="https://ccore.newebpay.com/MPG/mpg_gateway" method="POST">
+            <input type="hidden" name="MerchantID" value="MS120905494"/>
+            <input type="hidden" name="TradeInfo" value="{{ trade_info }}"/>
+            <input type="hidden" name="TradeSha" value="{{ trade_sha }}"/>
+            <input type="hidden" name="Version" value="1.6"/>
+
+            <input class="w3-btn w3-padding w3-teal w3-right" type="submit" value="結帳"/>
+        </form>
+    </div>
+
+</div>
+<script>
+function BackToHome(){
+    alert.apply("跳回首頁囉");
+    window.location.href('/home');
+}
+</script>
+
+<!-- End page content -->
+</div>
+
+
+
+
+</body>
+</html>

@@ -49,10 +49,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
                     <h6 class="w3-left-align">開賣時間：2021/06/25 00:00:00</h6>
                     <h6 class="w3-left-align">預售截止：2021/09/21</h6>
                     <div class="w3-section">
-                        <form action="/cart" method="GET">
-                            <button id = "check" type="submit" class="w3-button w3-green" name="title" value="會動的文藝復興">
+                        <form action="/ticket" method="POST">
+                            <button id = "check" type="submit" class="w3-button w3-green">
                                 <p id = "check_info" style="font-size: 10px;"><i class="fa fa-shopping-cart fa-2x"> 立即購票</i></p>
                                 <!-- debug : <p>{{data}}</p>  -->
+                                <input name = "title" type="hidden" value="夏至藝術節-誰怕虎姑婆"></input>
+                                <input name = "user" type="hidden" value="{{user}}"></input>
                                 <input id = "check_data" type="hidden" value="{{check}}"></input>
                             </button>
                         </form>
@@ -110,31 +112,32 @@ if(check=="True"){
     var btn_info = document.getElementById("check_info")
     btn_info.innerHTML = "已達購票上限";
     btn_info.style.fontSize = "15px";
+    }
 </script>
 
 <script>
     var slideIndex = 1;
     showDivs(slideIndex);
     function plusDivs(n) {
-      showDivs(slideIndex += n);
+    showDivs(slideIndex += n);
     }
     function currentDiv(n) {
-      showDivs(slideIndex = n);
+    showDivs(slideIndex = n);
     }
     function showDivs(n) {
-      var i;
-      var x = document.getElementsByClassName("mySlides");
-      var dots = document.getElementsByClassName("demo");
-      if (n > x.length) {slideIndex = 1}
-      if (n < 1) {slideIndex = x.length}
-      for (i = 0; i < x.length; i++) {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("demo");
+    if (n > x.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = x.length}
+    for (i = 0; i < x.length; i++) {
         x[i].style.display = "none";  
-      }
-      for (i = 0; i < dots.length; i++) {
+    }
+    for (i = 0; i < dots.length; i++) {
         dots[i].className = dots[i].className.replace("w3-white", "");
-      }
-      x[slideIndex-1].style.display = "block";  
-      dots[slideIndex-1].className += "w3-white";
+    }
+    x[slideIndex-1].style.display = "block";  
+    dots[slideIndex-1].className += "w3-white";
     }
 </script>
 
