@@ -10,18 +10,20 @@
         <input class='w3-text-black' type="text" name="ticket_type" id="ticket_type">
         <button onclick="myticket()">送出</button>
     </body>
-    <h2>
-      票券編號
-      </h2>
+      <div class="w3-row-padding w3-padding-16">
+        <h3> 我的票券 </h3>
+        <h3> 活動名稱： </h3>
+        <h3> 票種： </h3>
+      </div>
       <div id="qrcode">
-        <div class="w3-row-padding w3-padding-16">
+        <div class="w3-row-padding w3-padding-10">
           <div class="w3-third w3-margin-bottom">
             <!--<img src="{{ img_path }}" alt="YourQRcode" style="width:30%">-->
-            <img src="{{ url_for('static', filename='test2.png')}}">
-            <div class="w3-container w3-white">
-              <h3>票券編號 : 82285205</h3>
+            <img src="{{ url_for('static', filename='test2.png')}}"　alt="YourQRcode" style="width:40%">
+            
+              <h4>票券編號 : 2h8D52K5</h4>
               
-            </div>
+            
           </div>
       </div>
 </html>
