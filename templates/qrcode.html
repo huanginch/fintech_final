@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <script src="templates/jquery-3.6.0.min.js"></script>
 <html>
+
+<!-- Navigation Bar -->
+{%include "NavBar.html"%}
     <body>
         <input class='w3-text-black' type="text" name="qrcode" id="qrcode"></input>
         <input class='w3-text-black' type="text" name="event" id="event">
@@ -8,7 +11,7 @@
         <button onclick="myticket()">送出</button>
     </body>
     <h2>
-      自訂size (120x120)
+      票券編號
       </h2>
       <div id="qrcode">
         <div class="w3-row-padding w3-padding-16">
@@ -22,6 +25,7 @@
           </div>
       </div>
 </html>
+
 
 <script>
    //new QRCode(document.getElementById("qrcode"), "22121210");  //設置QRcode
