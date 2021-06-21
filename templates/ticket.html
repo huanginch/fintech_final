@@ -33,6 +33,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       document.getElementById("ticketPrice").innerHTML = price;
       document.getElementById("in_ticketType").value = ticketArea+','+ticketType;
       document.getElementById("in_ticketPrice").value = price;
+      generatePaycode();
 }
     function getinfo2() {
       var ticketArea = document.getElementById('tarea2').innerHTML
@@ -43,6 +44,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       document.getElementById("ticketPrice").innerHTML = price;
       document.getElementById("in_ticketType").value = ticketArea+','+ticketType;
       document.getElementById("in_ticketPrice").value = price;
+      generatePaycode();
 }
     function getinfo3() {
       var ticketArea = document.getElementById('tarea3').innerHTML
@@ -53,6 +55,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       document.getElementById("ticketPrice").innerHTML = price;
       document.getElementById("in_ticketType").value = ticketArea+','+ticketType;
       document.getElementById("in_ticketPrice").value = price;
+      generatePaycode();
 }
   </script>
 
@@ -91,6 +94,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
         <input type="hidden" name="title" value="{{ title }}"></input>
         <input id='in_ticketType' type="hidden" name="ticketType"></input>
         <input id='in_ticketPrice' type="hidden" name="ticketPrice"></input>
+        <input id='order_id' type="hidden" name="order_id"></input>
         <button type="submit" class="w3-button w3-black" value="送出購票要求">送出購票要求</button>
         <!-- <a href="/cart" class = "w3-button w3-black" onclick = "generatePaycode()">送出購票要求</a><br><br> -->
         <div id="qrcode"></div>
@@ -127,7 +131,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
         randomnumber = Math.floor(characters.length*Math.random());
         paycode += characters.substring(randomnumber,randomnumber + 1);
       }
-      alert( "您的訂單編號是 " + paycode );
+      document.getElementById("order_id").value = paycode;
+      // alert( "您的訂單編號是 " + paycode );
     }
     
 
