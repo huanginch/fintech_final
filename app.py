@@ -139,6 +139,7 @@ def cart():
         title = request.values.get('title')
         ticketType = request.values.get('ticketType')
         ticketPrice = request.values.get('ticketPrice')
+        order_id = request.values.get('order_id')
         data = {
             "MerchantID":"MS120905494",
             "RespondType":"JSON",
@@ -154,7 +155,7 @@ def cart():
         trade_info = create_mpg_aes_encrypt(parse_data.encode())
         trade_sha = create_mpg_sha_encrypt(trade_info)
 
-        return render_template('cart.html',user=user,title=title,ticketType=ticketType,ticketPrice=ticketPrice,trade_info=trade_info,trade_sha=trade_sha)
+        return render_template('cart.html',user=user,title=title,order_id=order_id,ticketType=ticketType,ticketPrice=ticketPrice,trade_info=trade_info,trade_sha=trade_sha)
 
 @app.route('/save_cart', methods=["GET","POST"])
 # @jwt_required()
@@ -167,6 +168,7 @@ def save_cart():
         name = request.values.get('name')
         email = request.values.get('email')
         ID = request.values.get('ID')
+        order_id = request.values.get('order_id')
         # print(user)
         data = {
             "MerchantID":"MS120905494",
@@ -181,7 +183,7 @@ def save_cart():
         }
         setdata = {
             "username":user,
-            "qrcode":"aaa",
+            "order_id":order_id,
             "event":title,
             "ticket_type":ticketType
         }
@@ -190,7 +192,7 @@ def save_cart():
         trade_info = create_mpg_aes_encrypt(parse_data.encode())
         trade_sha = create_mpg_sha_encrypt(trade_info)
 
-        return render_template('save_cart.html',user=user,title=title,ticketType=ticketType,ticketPrice=ticketPrice,name=name,email=email,ID=ID,trade_info=trade_info,trade_sha=trade_sha)
+        return render_template('save_cart.html',user=user,order_id=order_id,title=title,ticketType=ticketType,ticketPrice=ticketPrice,name=name,email=email,ID=ID,trade_info=trade_info,trade_sha=trade_sha)
 
 @app.route('/myticket', methods=["GET","POST"])
 @jwt_required()
