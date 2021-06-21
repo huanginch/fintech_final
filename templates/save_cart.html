@@ -62,25 +62,22 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
                 {{email}}
             </h5>
         </div>
-        <form id="myform" target="_blank" action="https://ccore.newebpay.com/MPG/mpg_gateway" method="POST">
+        <form id="myform" onsubmit="window.location.href = '/home'" action="https://ccore.newebpay.com/MPG/mpg_gateway" method="POST">
             <input type="hidden" name="MerchantID" value="MS120905494"/>
             <input type="hidden" name="TradeInfo" value="{{ trade_info }}"/>
             <input type="hidden" name="TradeSha" value="{{ trade_sha }}"/>
             <input type="hidden" name="Version" value="1.6"/>
 
-            <input class="w3-btn w3-padding w3-teal w3-right"  type="submit" value="結帳"/>
+            <input class="w3-btn w3-padding w3-teal w3-right" type="submit" value="結帳"/>
         </form>
     </div>
 
 </div>
 <script>
-document.getElementById("myform").addEventListener("submit", function(e){
-    if(!isValid){
-        e.preventDefault();    //stop form from submitting
-    }
-    console.log("AAA")
-    window.location.href('/qrcode')
-});
+function BackToHome(){
+    alert.apply("跳回首頁囉");
+    window.location.href('/home');
+}
 </script>
 
 <!-- End page content -->
