@@ -198,15 +198,34 @@ def save_cart():
 @jwt_required()
 def myticket():
     if request.method == 'GET' :
-        return render_template('qrcode.html')
-    else:
-        data = request.get_json()
-        qrcode = data.get('qrcode')
-        event = data.get('event')
-        ticket_type = data.get('ticket_type')
-        username = get_jwt_identity()
-        json = {'qrcode':qrcode , 'event':event , 'ticket_type': ticket_type , 'username':username}
-        py_firebase.setData(json,"addTicket")
+        user = get_jwt_identity()
+        alert = ''
+        return render_template('myticket.html',user=user,alert=alert)
+        
+@app.route('/myticket_info', methods=["GET","POST"])
+#jwt_required()
+def myticket_info():
+        event = request.values.get('Eventname')
+        username = request.values.get('user')
+        json = {'username':username,'event':event}
+        #print(username)
+        #print(event)
+        #py_firebase.setData(json,"addTicket")
+        if(py_firebase.getData(json,"checkTicket")):
+            user = username
+            data = py_firebase.getData(json,'getTicketInfo')
+            order_id = data['order_id']
+            ticket_type = data['ticket_type']
+            QRcode.QRcode(order_id)
+            print(order_id)
+            return render_template('myticket_info.html',user=user,order_id=order_id,ticket_type=ticket_type,event=event)
+        else:
+            user = username
+            #flash('您尚未擁有此活動的票券')
+            alert = '您尚未擁有此活動的票券！'
+            print('false')
+            return render_template('myticket.html',user=user,alert=alert)
+
 
 
 
